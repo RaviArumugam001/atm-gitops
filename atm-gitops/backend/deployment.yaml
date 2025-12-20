@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: django
-          image: atmbe_backend:latest
-          imagePullPolicy: Never
+          image: raviaarumugam001/django-atm:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8003
           envFrom:
