@@ -1,0 +1,31 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django-backend
+  template:
+    metadata:
+      labels:
+        app: django-backend
+    spec:
+      containers:
+        - name: django
+          image: atmbe_backend:latest
+          ports:
+            - containerPort: 8003
+          envFrom:
+            - configMapRef:
+                name: django-config
+            - secretRef:
+                name: mysql-secret
+          command:
+            - sh
+            - -c
+            - |
+              python manage.py migrate --noinput &&
+              python manage.py runserver 0.0.0.0:8003
