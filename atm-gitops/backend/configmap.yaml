@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: django-config
 data:
-  DJANGO_SETTINGS_MODULE: atm.settings
+  DJANGO_SETTINGS_MODULE: ATM.settings
   DB_HOST: mysql
   DB_NAME: atm
   DB_PORT: "3306"
