@@ -14,7 +14,7 @@ spec:
         app: django-backend
     spec:
       imagePullSecrets:
-        - name: regcred
+        - name: docker-registry-creds
       containers:
         - name: django
           image: raviarumugam001/django-atm:latest
