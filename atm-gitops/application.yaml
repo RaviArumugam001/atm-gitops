@@ -1,4 +1,3 @@
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -7,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/RaviArumugam001/ATM-BE-F1.0.git
+    repoURL: https://github.com/RaviArumugam001/atm-gitops.git
     targetRevision: main
     path: .
   destination:
