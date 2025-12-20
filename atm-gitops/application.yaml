@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/RaviArumugam001/ATM-BE-F1.0.git
-    targetRevision: master
+    targetRevision: main
     path: .
   destination:
     server: https://kubernetes.default.svc
