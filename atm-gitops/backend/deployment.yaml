@@ -17,7 +17,7 @@ spec:
         - name: regcred
       containers:
         - name: django
-          image: raviaarumugam001/django-atm:latest
+          image: raviarumugam001/django-atm:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8003
