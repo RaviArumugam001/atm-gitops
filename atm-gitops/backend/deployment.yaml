@@ -16,6 +16,7 @@ spec:
       containers:
         - name: django
           image: atmbe_backend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8003
           envFrom:
