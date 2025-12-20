@@ -1,8 +1,8 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: atm
 spec:
   replicas: 1
   selector:
@@ -13,6 +13,13 @@ spec:
       labels:
         app: mysql
     spec:
+      initContainers:
+        - name: fix-permissions
+          image: busybox
+          command: ["sh", "-c", "chown -R 999:999 /var/lib/mysql"]
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
       containers:
         - name: mysql
           image: mysql/mysql-server:latest
