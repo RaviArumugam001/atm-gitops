@@ -31,5 +31,5 @@ spec:
             - sh
             - -c
             - |
-              python wmanage.py migrate --noinput &&
-              python wmanage.py runserver 0.0.0.0:8003
+              python manage.py migrate --noinput &&
+              python manage.py runserver 0.0.0.0:8003
