@@ -11,7 +11,7 @@ spec:
     path: atm-gitops-v1.0
   destination:
     server: https://kubernetes.default.svc
-    namespace: atm
+    namespace: atm2
   syncPolicy:
     automated:
       prune: true
