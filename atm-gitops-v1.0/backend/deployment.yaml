@@ -5,7 +5,7 @@ metadata:
   name: django-backend
   namespace: atm2
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: django-backend
