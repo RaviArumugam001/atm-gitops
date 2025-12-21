@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: atm-django
+  name: atm-djangov1.0
   namespace: argocd
 spec:
   project: default
