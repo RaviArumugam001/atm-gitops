@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: atm-prod-djangov1.0
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/RaviArumugam001/atm-gitops.git
+    targetRevision: main
+    path: atm-prod-gitops
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: atm-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - SkipSchemaValidation=true
+      - CreateNamespace=true
+
+# atm-prod-gitops/application.yaml

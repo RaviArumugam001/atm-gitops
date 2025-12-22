@@ -1,0 +1,42 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-backend
+  namespace: atm-prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: django-backend
+  template:
+    metadata:
+      labels:
+        app: django-backend
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-creds
+      containers:
+        - name: django
+          image: raviarumugam001/django-atm:V1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8003
+          envFrom:
+            - configMapRef:
+                name: django-config
+            - secretRef:
+                name: mysql-secret
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          command:
+            - sh
+            - -c
+            - |
+              python wmanage.py migrate --noinput &&
+              python manage.py runserver 0.0.0.0:8003

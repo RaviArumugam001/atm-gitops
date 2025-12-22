@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: atm-ingress
+  namespace: atm-prod
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: one.app.techg.com
+    http:
+      paths:
+      - path: /django(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: django-atm-svc
+            port:
+              number: 80
