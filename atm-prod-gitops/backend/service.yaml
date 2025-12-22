@@ -6,7 +6,7 @@ spec:
   selector:
     app: django-atm
   ports:
-    - port: 8003
+    - port: 80
       targetPort: 8003
 #      nodePort: 30003
   type: ClusterIP

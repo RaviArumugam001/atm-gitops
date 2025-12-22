@@ -17,4 +17,4 @@ spec:
           service:
             name: django-atm-svc
             port:
-              number: 8003
+              number: 80
