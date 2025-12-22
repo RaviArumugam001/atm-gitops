@@ -4,13 +4,13 @@ metadata:
   name: django-atm-svc
   namespace: atm-prod
 spec:
-  type: NodePort
+  type: ClusterIP # NodePort
   selector:
     app: django-backend
   ports:
   - name: http
     port: 80
     targetPort: 8003
-    nodePort: 30080
+#    nodePort: 30080
 
 #http://192.168.49.2:30080/
