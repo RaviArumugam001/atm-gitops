@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: one.app.techg.com
+  - host: onewebres.app.techg.com
     http:
       paths:
       - path: /django(/|$)(.*)
