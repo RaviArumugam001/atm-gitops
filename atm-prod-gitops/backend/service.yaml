@@ -4,10 +4,13 @@ metadata:
   name: django-atm-svc
   namespace: atm-prod
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
-    app: django-backend     # ✅ MATCHES POD LABELS
+    app: django-backend
   ports:
   - name: http
-    port: 80               # ✅ SERVICE PORT (Ingress uses this)
-    targetPort: 8003       # ✅ CONTAINER PORT
+    port: 80
+    targetPort: 8003
+    nodePort: 30080
+
+#http://192.168.49.2:30080/
