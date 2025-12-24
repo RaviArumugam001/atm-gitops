@@ -25,3 +25,5 @@ spec:
               name: ecommerce-config
           - secretRef:
               name: ecommerce-secrets
+        command:
+          [ "sh", "-c", "./wait-for-it.sh postgres:5432 -- flask db upgrade && gunicorn -k eventlet -w 1 -b 0.0.0.0:5000 main:app" ]
