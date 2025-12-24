@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: ecommerce-prod
+
+resources:
+  # 1️⃣ Core configs (must exist first)
+  - manifest/configmap.yaml
+  - manifest/secrets.yaml
+
+  # 2️⃣ Databases / Stateful components
+  - manifest/statefulset.yaml       # postgres
+  - manifest/mongodb.yaml
+  - manifest/neo4j.yaml
+  - manifest/elasticsearch.yaml
+
+  # 3️⃣ Internal services (networking)
+  - manifest/service.yaml           # postgres / mongo / neo4j
+  - manifest/elastic_service.yaml
+  - manifest/backend_service.yaml
+
+  # 4️⃣ Application workloads
+  - manifest/flask_backend.yaml     # backend deployment
+
+  # 5️⃣ External access (LAST)
+  - manifest/ingress.yaml

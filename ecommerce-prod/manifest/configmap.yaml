@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+  namespace: ecommerce-prod
+data:
+  POSTGRES_DB: Flask
+  DB_HOST: postgres
+  DB_PORT: "5432"
+
+  ELASTIC_SEARCH_HOST: http://elasticsearch:9200
+  ELASTIC_SEARCH_BE_INDEX_NAME: ecommerse_be_store_product_details
+
+  NEO4J_HOST_URL: bolt://neo4j:7687
+
+  MONGO_DB_URL: mongodb://admin:abcd@mongodb:27017/ecommerse_be?authSource=admin

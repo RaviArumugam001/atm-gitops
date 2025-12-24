@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neo4j
+  namespace: ecommerce-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neo4j
+  template:
+    metadata:
+      labels:
+        app: neo4j
+    spec:
+      containers:
+      - name: neo4j
+        image: neo4j:5.6.0
+        ports:
+          - containerPort: 7474
+          - containerPort: 7687
+        env:
+          - name: NEO4J_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: ecommerce-secrets
+                key: NEO4J_AUTH
