@@ -16,6 +16,7 @@ resources:
 
   # 3️⃣ Internal services (networking)
   - manifest/service.yaml           # postgres / mongo / neo4j
+  - manifest/mongodb_service.yaml           # postgres / mongo / neo4j
   - manifest/elastic_service.yaml
   - manifest/backend_service.yaml
 

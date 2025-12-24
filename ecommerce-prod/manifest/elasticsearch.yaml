@@ -21,8 +21,34 @@ spec:
         env:
           - name: discovery.type
             value: single-node
+
+          # 🔥 VERY IMPORTANT JVM SETTINGS
+          - name: ES_JAVA_OPTS
+            value: "-Xms512m -Xmx512m"
+
+          - name: xpack.security.enabled
+            value: "true"
+
           - name: ELASTIC_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: ecommerce-secrets
                 key: ELASTIC_PASSWORD
+
+        # 🧠 MEMORY LIMITS (MANDATORY)
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1.5Gi"
+            cpu: "1"
+
+        # Prevent mmap crash in containers
+        volumeMounts:
+          - name: es-data
+            mountPath: /usr/share/elasticsearch/data
+
+      volumes:
+        - name: es-data
+          emptyDir: {}
