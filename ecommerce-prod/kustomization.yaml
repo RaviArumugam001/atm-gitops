@@ -19,9 +19,11 @@ resources:
   - manifest/mongodb_service.yaml           # postgres / mongo / neo4j
   - manifest/elastic_service.yaml
   - manifest/backend_service.yaml
+  - manifest/angular-frontend-service.yaml
 
   # 4️⃣ Application workloads
   - manifest/flask_backend.yaml     # backend deployment
+  - manifest/angular-frontend-deployment.yaml
 
   # 5️⃣ External access (LAST)
   - manifest/ingress.yaml

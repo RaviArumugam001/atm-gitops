@@ -8,6 +8,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+  - host: ecommerce.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ecommerce-frontend
+            port:
+              number: 80
+
   - host: api.ecommerce.local
     http:
       paths:

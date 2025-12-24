@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-frontend
+  namespace: ecommerce-prod
+  labels:
+    app: ecommerce-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ecommerce-frontend
+  template:
+    metadata:
+      labels:
+        app: ecommerce-frontend
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-creds
+      containers:
+      - name: angular
+        image: raviarumugam001/ecommerce-frontend:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+
+        # IMPORTANT: frontend must talk to backend via service name / ingress
+        env:
+          - name: API_BASE_URL
+            value: "http://api.ecommerce.local/"
