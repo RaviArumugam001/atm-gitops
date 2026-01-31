@@ -4,7 +4,12 @@ metadata:
   name: django-backend
   namespace: atm
 spec:
-  replicas: 2
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       app: django-backend
