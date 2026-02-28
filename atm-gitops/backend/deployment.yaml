@@ -22,7 +22,7 @@ spec:
         - name: docker-registry-creds
       containers:
         - name: django
-          image: raviarumugam001/django-atm:11
+          image: raviarumugam001/django-atm:2
           imagePullPolicy: Always
           ports:
             - containerPort: 8003
