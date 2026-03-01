@@ -3,15 +3,13 @@ kind: Ingress
 metadata:
   name: django-ingress
   namespace: atm
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
   - host: onewebres.app.techg.com
     http:
       paths:
-      - path: /django(/|$)(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
