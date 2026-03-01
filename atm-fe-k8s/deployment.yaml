@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atm
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: atm-angular-app
+  template:
+    metadata:
+      labels:
+        app: atm-angular-app
+    spec:
+      containers:
+      - name: atm-angular-app
+        image: raviarumugam001/django-atm:2
+        ports:
+        - containerPort: 80
