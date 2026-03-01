@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/RaviArumugam001/atm-gitops.git
     targetRevision: main
-    path: atm-fe-k8s
+    path: atm-fe-k8s/k8s
 
   destination:
     server: https://kubernetes.default.svc
