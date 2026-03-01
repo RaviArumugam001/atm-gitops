@@ -8,6 +8,7 @@ resources:
   - backend/service.yaml
   - backend/configmap.yaml
   - backend/secret.yaml
+  - backend/ingress.yaml
   - mysql/deployment.yaml
   - mysql/service.yaml
   - mysql/pvc.yaml
