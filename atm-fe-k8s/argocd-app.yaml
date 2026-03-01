@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: atm-angular-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/RaviArumugam001/atm-gitops.git
+    targetRevision: main
+    path: atm-fe-k8s
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: atm
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
