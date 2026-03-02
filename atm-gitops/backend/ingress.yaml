@@ -1,12 +1,37 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: django-ingress
+#   namespace: atm
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - host: onewebres.app.techg.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: django-backend
+#             port:
+#               number: 8003
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: django-ingress
   namespace: atm
+  annotations:
+    konghq.com/strip-path: "true"
 spec:
-  ingressClassName: nginx
+  ingressClassName: kong
+  tls:
+  - hosts:
+    - atm.dev.be.local
+    secretName: atm-tls
   rules:
-  - host: onewebres.app.techg.com
+  - host: atm.dev.be.local
     http:
       paths:
       - path: /
