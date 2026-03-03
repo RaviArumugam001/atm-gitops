@@ -3,6 +3,11 @@ kind: Application
 metadata:
   name: atm-django
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: django=raviarumugam001/django-atm
+    argocd-image-updater.argoproj.io/django.update-strategy: semver
+    argocd-image-updater.argoproj.io/django.allow-tags: regexp:^v.*
+    argocd-image-updater.argoproj.io/django.write-back-method: git
 spec:
   project: default
   source:
