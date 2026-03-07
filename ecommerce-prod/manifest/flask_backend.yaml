@@ -28,7 +28,7 @@ spec:
 
       containers:
         - name: flask
-          image: raviarumugam001/ecommerce-backend:latest
+          image: raviarumugam001/ecommerce-backend:v1.2.0
 
           ports:
             - containerPort: 5000
