@@ -28,7 +28,7 @@ spec:
 
       containers:
         - name: flask
-          image: raviarumugam001/ecommerce-backend:v1.2.0
+          image: raviarumugam001/ecommerce-backend:v1.3.0
           imagePullPolicy: Always
 
           ports:
