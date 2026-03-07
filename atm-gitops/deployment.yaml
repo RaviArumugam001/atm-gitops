@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-backend
+  namespace: atm
+spec:
+  replicas: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: django-backend
+  template:
+    metadata:
+      labels:
+        app: django-backend
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-creds
+      containers:
+        - name: django
+          image: raviarumugam001/django-atm:2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8003
+          envFrom:
+            - configMapRef:
+                name: django-config
+            - secretRef:
+                name: mysql-secret
+          command:
+            - sh
+            - -c
+            - |
+              python manage.py migrate --noinput &&
+              python manage.py runserver 0.0.0.0:8003
