@@ -4,7 +4,12 @@ metadata:
   name: ecommerce-backend
   namespace: ecommerce-prod
 spec:
-  replicas: 3
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       app: ecommerce-backend
@@ -20,6 +25,28 @@ spec:
         image: raviarumugam001/ecommerce-backend:latest
         ports:
           - containerPort: 5000
+        startupProbe:
+            httpGet:
+              path: /health/
+              port: 8003
+            failureThreshold: 30
+            periodSeconds: 5
+      
+          readinessProbe:
+            httpGet:
+              path: /health/
+              port: 8003
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+      
+          livenessProbe:
+            httpGet:
+              path: /health/
+              port: 8003
+            initialDelaySeconds: 30
+            periodSeconds: 10
         envFrom:
           - configMapRef:
               name: ecommerce-config
