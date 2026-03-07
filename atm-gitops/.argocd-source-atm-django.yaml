@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - raviarumugam001/django-atm:v1.17.0
