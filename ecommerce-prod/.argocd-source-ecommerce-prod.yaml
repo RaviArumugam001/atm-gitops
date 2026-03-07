@@ -1,0 +1,4 @@
+kustomize:
+  images:
+  - raviarumugam001/ecommerce-frontend:v1.2.0
+  - raviarumugam001/ecommerce-backend:v1.4.0
