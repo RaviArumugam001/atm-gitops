@@ -26,6 +26,14 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8003
+          readinessProbe:
+            httpGet:
+              path: /health/
+              port: 8003
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
           envFrom:
             - configMapRef:
                 name: django-config
