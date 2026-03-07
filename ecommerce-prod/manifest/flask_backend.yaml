@@ -3,54 +3,68 @@ kind: Deployment
 metadata:
   name: ecommerce-backend
   namespace: ecommerce-prod
+
 spec:
   replicas: 5
+
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 0
       maxSurge: 1
+
   selector:
     matchLabels:
       app: ecommerce-backend
+
   template:
     metadata:
       labels:
         app: ecommerce-backend
+
     spec:
       imagePullSecrets:
         - name: docker-registry-creds
+
       containers:
-      - name: flask
-        image: raviarumugam001/ecommerce-backend:latest
-        ports:
-          - containerPort: 5000
-        startupProbe:
+        - name: flask
+          image: raviarumugam001/ecommerce-backend:latest
+
+          ports:
+            - containerPort: 5000
+
+          startupProbe:
             httpGet:
-              path: /health/
-              port: 8003
+              path: /health
+              port: 5000
             failureThreshold: 30
             periodSeconds: 5
-      
+
           readinessProbe:
             httpGet:
-              path: /health/
-              port: 8003
+              path: /health
+              port: 5000
             initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
-      
+
           livenessProbe:
             httpGet:
-              path: /health/
-              port: 8003
+              path: /health
+              port: 5000
             initialDelaySeconds: 30
             periodSeconds: 10
-        envFrom:
-          - configMapRef:
-              name: ecommerce-config
-          - secretRef:
-              name: ecommerce-secrets
-        command:
-          [ "sh", "-c", "./wait-for-it.sh postgres:5432 -- flask db upgrade && gunicorn -k eventlet -w 1 -b 0.0.0.0:5000 main:app" ]
+
+          envFrom:
+            - configMapRef:
+                name: ecommerce-config
+            - secretRef:
+                name: ecommerce-secrets
+
+          command:
+            [
+              "sh",
+              "-c",
+              "./wait-for-it.sh postgres:5432 -- flask db upgrade && gunicorn -k eventlet -w 1 -b 0.0.0.0:5000 main:app"
+            ]
