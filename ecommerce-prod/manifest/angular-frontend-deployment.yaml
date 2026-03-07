@@ -24,7 +24,7 @@ spec:
         - name: docker-registry-creds
       containers:
       - name: angular
-        image: raviarumugam001/ecommerce-frontend:latest
+        image: raviarumugam001/ecommerce-frontend:v1.1.0
         imagePullPolicy: Always
         ports:
           - containerPort: 80
