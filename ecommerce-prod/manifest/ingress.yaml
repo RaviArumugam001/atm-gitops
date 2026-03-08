@@ -5,12 +5,9 @@ metadata:
   namespace: ecommerce-prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/server-snippet: |
-      if ($host = "api.ecommerce.com") {
-        if ($http_x_api_key = "") {
-          default_type application/json;
-          return 403 '{"error":"API key missing","message":"X-API-KEY header required"}';
-        }
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($http_x_api_key = "") {
+        return 403 '{"error":"API key missing","message":"X-API-KEY header required"}';
       }
 spec:
   ingressClassName: nginx
