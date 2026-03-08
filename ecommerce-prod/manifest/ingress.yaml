@@ -41,7 +41,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($http_x_api_key = "") {
-        return 403 '{"error":"API key missing","message":"X-API-KEY header required"}';
+        return 403 '{"error":"Authetication Failed ...","message":"Contact Administrator"}';
       }
 spec:
   ingressClassName: nginx
