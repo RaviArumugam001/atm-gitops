@@ -39,6 +39,9 @@ metadata:
   name: ecommerce-api-ingress
   namespace: ecommerce-prod
   annotations:
+    nginx.ingress.kubernetes.io/limit-rps: "10"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($http_x_api_key = "") {
         return 403 '{"error":"Authentication Failed","message":"Contact Administrator"}';
