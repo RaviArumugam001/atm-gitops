@@ -5,6 +5,13 @@ metadata:
   namespace: ecommerce-prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host = "api.ecommerce.com") {
+        if ($http_x_api_key = "") {
+          default_type application/json;
+          return 403 '{"error":"True","message":"Authentication Failed"}';
+        }
+      }
 spec:
   ingressClassName: nginx
   rules:
