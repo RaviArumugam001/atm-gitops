@@ -41,11 +41,12 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($http_x_api_key = "") {
-        return 403 '{"error":"Authetication Failed ...","message":"Contact Administrator"}';
+        return 403 '{"error":"Authentication Failed","message":"Contact Administrator"}';
       }
+
       if ($http_x_api_key != "0687462a276c295d03a7d98c387eead1c5c2005a27582c1fd9258437c23bdd60") {
-      return 403 '{"error":"Authetication Failed ...","message":"Contact Administrator"}';
-    }
+        return 403 '{"error":"Authentication Failed","message":"Contact Administrator"}';
+      }
 spec:
   ingressClassName: nginx
   rules:
@@ -57,5 +58,7 @@ spec:
         backend:
           service:
             name: ecommerce-backend
+            port:
+              number: 5000
             port:
               number: 5000
