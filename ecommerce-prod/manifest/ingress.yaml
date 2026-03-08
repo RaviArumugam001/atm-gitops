@@ -60,5 +60,3 @@ spec:
             name: ecommerce-backend
             port:
               number: 5000
-            port:
-              number: 5000
