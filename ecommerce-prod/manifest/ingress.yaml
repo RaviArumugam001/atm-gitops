@@ -41,7 +41,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($http_x_api_key = "") {
-        default_type application/json;
         return 403 '{"error":"API key missing","message":"X-API-KEY header required"}';
       }
 spec:
