@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: auth-keycloak
+  namespace: auth
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/RaviArumugam001/atm-gitops.git
+    targetRevision: main
+    path: atm-keycloak
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: auth
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      syncOptions:
+      - SkipSchemaValidation=true
+      - CreateNamespace=true
