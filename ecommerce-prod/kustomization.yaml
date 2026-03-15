@@ -4,6 +4,9 @@ kind: Kustomization
 namespace: ecommerce-prod
 
 resources:
+  # Add the Keyloak Configurations
+  - manifest/keycloak-deployment.yaml
+  - manifest/keycloak-service.yaml
   # 1️⃣ Core configs (must exist first)
   - manifest/configmap.yaml
   - manifest/secrets.yaml
