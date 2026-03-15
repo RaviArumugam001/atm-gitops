@@ -5,6 +5,8 @@ metadata:
   namespace: auth
 spec:
   ports:
-  - port: 8088
+    - port: 8088
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: keycloak
