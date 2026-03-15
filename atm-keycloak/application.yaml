@@ -16,6 +16,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
-      syncOptions:
-      - SkipSchemaValidation=true
-      - CreateNamespace=true
+      
