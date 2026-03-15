@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: atm-angular-app
-        image: raviarumugam001/atm_fe_v1.0:6
+        image: raviarumugam001/atm_fe_v1.0:7
         ports:
         - containerPort: 80
